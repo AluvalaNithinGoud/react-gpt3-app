@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>UI Element</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            margin: 0;
+
+            padding: 0;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: flex-start;
+
+            height: 100vh;
+
+           box-sizing: border-box;
+
+        }
+
+        .border {
+
+          border-bottom: 100px;
+
+}
+
+         
+        .flex {
+
+         display: flex;
+        }
+
+        
+
+        .container {
+
+            width: 500px;
+
+            height: 401px;
+
+            border: 1px solid black;
+
+            margin: 20px 20px 20px 20px;
+
+        }
+
+        .left-header {
+
+            background-color: #f08080;
+
+            position: absolute;
+
+            top: 10px;
+
+            width: 300px;
+
+            margin-left: 10px;
+
+            padding: 10px 90px;
+
+        }
+
+        .right-header {
+
+            background-color: #f08080;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            position: absolute;
+
+            top: 10px;
+
+            width: 300px;
+
+            margin-left: 10px;
+
+            padding: 10px 90px;
+
+        }
+
+        .left-dropdown {
+
+            display: flex;
+
+            padding: 30px;
+
+            align-items: center;
+
+            justify-content: flex-end;
+
+            top: 10px;
+
+            right: 10px;
+
+        }
+
+        .right-dropdown {
+
+            display: flex;
+
+            padding: 30px;
+
+            letter-spacing: 0px;
+
+            align-items: center;
+
+            top: 10px;
+
+            right: 10px;
+
+        }
+
+        .header input[type="checkbox"] {
+
+            margin-right: 5px;
+
+        }
+
+        .left-text {
+
+            /* text-align: start; */
+
+            align-items: start;
+
+        }
+
+ 
+        
+
+        .main1 {
+
+            display: flex;
+
+            position: relative;
+
+        }
+
+        .footer {
+
+            text-align: right;
+
+         }
+
+    </style>
+
+</head>
+
+<body class="">
+
+    <div class="main">
+
+        <div class="main1">
+
+            <div class="container">
+
+                <div class="left-header">
+
+                    <label for="compare" class="left-text">Run Report As Of</label>
+
+                </div>
+
+                <div class="right-dropdown">
+
+                    <select onchange="dropdownUpdated(event)">
+
+                        <option value="select">select</option>
+
+                        <option value="now">Now</option>
+
+                        <option value="label">Label</option>
+
+                        <option value="branch">Branch</option>
+
+                        <option value="edit">Edit</option>
+
+                        <option value="date">Date</option>
+
+                    </select>
+
+                </div>
+
+                <div class="calendar-container">
+
+ 
+                  <div class="nav-buttons">
+          
+                      <span class="nav-button" id="prev-year">&lt;&lt;</span>
+          
+                      <span class="nav-button" id="prev-month">&lt;</span>
+          
+                      <span id="current-month" class="dropdown-trigger">May</span>
+          
+                      <span id="current-year" class="dropdown-trigger">2024</span>
+          
+                      <span class="nav-button" id="next-month">&gt;</span>
+          
+                      <span class="nav-button" id="next-year">&gt;&gt;</span>
+          
+                  </div>
+          
+                 
+          
+                  <div class="dropdown" id="month-dropdown">
+          
+                      <ul>
+          
+                          <li data-month="0">January</li>
+          
+                          <li data-month="1">February</li>
+          
+                          <li data-month="2">March</li>
+          
+                          <li data-month="3">April</li>
+          
+                          <li data-month="4">May</li>
+          
+                          <li data-month="5">June</li>
+          
+                          <li data-month="6">July</li>
+          
+                          <li data-month="7">August</li>
+          
+                          <li data-month="8">September</li>
+          
+                          <li data-month="9">October</li>
+          
+                          <li data-month="10">November</li>
+          
+                          <li data-month="11">December</li>
+          
+                      </ul>
+          
+                  </div>
+          
+                  <div class="dropdown" id="year-dropdown">
+          
+                      <ul>
+          
+                          <!-- Year options will be populated by JavaScript -->
+          
+                      </ul>
+          
+                  </div>
+          
+                  <table>
+          
+                      <thead>
+          
+                          <tr>
+          
+                              <th>Sun</th>
+          
+                              <th>Mon</th>
+          
+                              <th>Tue</th>
+          
+                              <th>Wed</th>
+          
+                              <th>Thu</th>
+          
+                              <th>Fri</th>
+          
+                              <th>Sat</th>
+          
+                          </tr>
+          
+                      </thead>
+          
+                      <tbody id="calendar-body">
+          
+                          <!-- Calendar dates will be inserted here -->
+          
+                      </tbody>
+
+ 
+                  </table>
+          
+                  <input type="time" value="10:12:06">
+
+              </div>
+
+            </div>
+
+            <div>
+
+                <div class="container">
+
+                    <div class="right-header">
+
+                        <input type="checkbox" id="compare" />
+
+                        <label for="compare">Compare To Report As Of</label>
+
+                    </div>
+
+                    <div class="left-dropdown">
+
+                        <select>
+
+                            <option value="select">select</option>
+
+                            <option>Now</option>
+
+                                                                             <option>Label</option>
+
+                                                                             <option>Branch</option>
+
+                                                                             <option>Edit</option>
+
+                                                                             <option>Date</option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer"><button>Run report</button></div>
+
+    </body>
+
+</html>
+
+ 
+
+ 
+
+ 
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Interactive Calendar</title>
+
+    <style>
+
+        body {
+
+            font-family: Arial, sans-serif;
+
+            background-color: #f9f9f9;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            height: 100vh;
+
+            margin: 0;
+
+        }
+
+        .calendar-container {
+
+            border: 1px solid #ccc;
+          display: none;
+            background-color: #fff;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            
+        }
+        
+ 
+        .nav-buttons {
+
+            text-align: center;
+
+            margin-bottom: 5px;
+
+            position: relative;
+
+        }
+
+        .nav-button {
+
+            display: inline-block;
+
+            cursor: pointer;
+
+            padding: 5px 10px;
+
+            margin: 0 5px;
+
+            background-color: transparent;
+
+            text-align: center;
+
+        }
+
+        .dropdown-trigger {
+
+            cursor: pointer;
+
+            padding: 5px 10px;
+
+            display: inline-block;
+
+        }
+
+        .dropdown {
+
+            display: none;
+
+            position: absolute;
+
+            background-color: #fff;
+
+            border: 1px solid #ccc;
+
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+            z-index: 1000;
+
+        }
+
+        .dropdown ul {
+
+            list-style-type: none;
+
+            padding: 0;
+
+            margin: 0;
+
+        }
+
+        .dropdown li {
+
+            padding: 2px;
+
+            cursor: pointer;
+
+        }
+
+        .dropdown li:hover {
+
+            background-color: #eee;
+
+        }
+
+        table {
+
+            width: 90%;
+          margin: auto;
+             border-collapse: collapse;
+        
+        }
+
+        th, td {
+
+            padding: 10px;
+
+            border: 1px solid #ccc;
+
+            text-align: center;
+
+        }
+
+        th {
+
+            background-color: #ff6600;
+
+            color: white;
+
+        }
+
+        .today {
+
+            background-color: #ffe0b2;
+
+        }
+
+        .prev-month, .next-month {
+
+            color: #ccc;
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+   
+
+    <script>
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            const today = new Date();
+
+            let currentYear = today.getFullYear();
+
+            let currentMonth = today.getMonth();
+
+            const calendarBody = document.getElementById('calendar-body');
+
+            const currentMonthSpan = document.getElementById('current-month');
+
+            const currentYearSpan = document.getElementById('current-year');
+
+            const prevYearButton = document.getElementById('prev-year');
+
+            const prevMonthButton = document.getElementById('prev-month');
+
+            const nextMonthButton = document.getElementById('next-month');
+
+            const nextYearButton = document.getElementById('next-year');
+
+            const monthDropdown = document.getElementById('month-dropdown');
+
+            const yearDropdown = document.getElementById('year-dropdown');
+
+            // Populate year dropdown options
+
+            const yearList = yearDropdown.querySelector('ul');
+
+            for (let i = currentYear - 100; i <= currentYear + 100; i++) {
+
+                const li = document.createElement('li');
+
+                li.textContent = i;
+
+                li.dataset.year = i;
+
+                yearList.appendChild(li);
+
+            }
+
+            // Event listeners for dropdowns
+
+            currentMonthSpan.addEventListener('click', () => {
+
+                const rect = currentMonthSpan.getBoundingClientRect();
+
+monthDropdown.style.top = `${rect.bottom}px`;
+
+monthDropdown.style.left = `${rect.left}px`;
+
+monthDropdown.style.display = 'block';
+
+yearDropdown.style.display = 'none';
+
+            });
+
+            currentYearSpan.addEventListener('click', () => {
+
+                const rect = currentYearSpan.getBoundingClientRect();
+
+yearDropdown.style.top = `${rect.bottom}px`;
+
+yearDropdown.style.left = `${rect.left}px`;
+
+yearDropdown.style.display = 'block';
+
+monthDropdown.style.display = 'none';
+
+            });
+
+            document.addEventListener('click', (e) => {
+
+                if (!e.target.classList.contains('dropdown-trigger') && !e.target.closest('.dropdown')) {
+
+monthDropdown.style.display = 'none';
+
+yearDropdown.style.display = 'none';
+
+                }
+
+            });
+
+            monthDropdown.addEventListener('click', (e) => {
+
+                if (e.target.tagName === 'LI') {
+
+                    currentMonth = parseInt(e.target.dataset.month);
+
+                    updateCalendar();
+
+monthDropdown.style.display = 'none';
+
+                }
+
+            });
+
+            yearDropdown.addEventListener('click', (e) => {
+
+                if (e.target.tagName === 'LI') {
+
+                   currentYear = parseInt(e.target.dataset.year);
+
+                    updateCalendar();
+
+yearDropdown.style.display = 'none';
+
+                }
+
+            });
+
+            // Navigation buttons event listeners
+
+            prevYearButton.addEventListener('click', () => {
+
+                currentYear--;
+
+                updateCalendar();
+
+            });
+
+            prevMonthButton.addEventListener('click', () => {
+
+                currentMonth--;
+
+                if (currentMonth < 0) {
+
+                    currentMonth = 11;
+
+                    currentYear--;
+
+                }
+
+                updateCalendar();
+
+            });
+
+            nextMonthButton.addEventListener('click', () => {
+
+                currentMonth++;
+
+                if (currentMonth > 11) {
+
+                    currentMonth = 0;
+
+                    currentYear++;
+
+                }
+
+                updateCalendar();
+
+            });
+
+            nextYearButton.addEventListener('click', () => {
+
+                currentYear++;
+
+                updateCalendar();
+
+            });
+
+            function updateCalendar() {
+
+                // Clear previous calendar
+
+                calendarBody.innerHTML = '';
+
+                // Get first day of the month
+
+                const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+
+                const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+
+                const daysInPrevMonth = new Date(currentYear, currentMonth, 0).getDate();
+
+                // Update current month and year text
+
+                const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+                currentMonthSpan.textContent = monthNames[currentMonth];
+
+                currentYearSpan.textContent = currentYear;
+
+                let date = 1;
+
+                 let prevMonthDate = daysInPrevMonth - firstDay + 1;
+
+        for (let i = 0; i < 6; i++) { // 6 weeks to cover all possible scenarios
+
+            const row = document.createElement('tr');
+
+            for (let j = 0; j < 7; j++) {
+
+                const cell = document.createElement('td');
+
+                if (i === 0 && j < firstDay) {
+
+                    cell.textContent = prevMonthDate;
+
+                    cell.classList.add('prev-month');
+
+                    prevMonthDate++;
+
+                } else if (date > daysInMonth) {
+
+                    cell.textContent = date - daysInMonth;
+
+                    cell.classList.add('next-month');
+
+                    date++;
+
+                } else {
+
+                    cell.textContent = date;
+
+                    date++;
+
+                }
+
+                row.appendChild(cell);
+
+            }
+
+            calendarBody.appendChild(row);
+
+        }
+
+    }
+
+    // Initial calendar load
+
+    updateCalendar();
+
+});
+
+
+function dropdownUpdated(e){
+  let dropdownValue = e.target.value;
+  if(dropdownValue == 'date'){
+    document.getElementsByClassName('calendar-container')[0].style.display = 'unset';
+  }else{
+    document.getElementsByClassName('calendar-container')[0].style.display = 'none';
+
+  }
+}
+
+    </script>
+
+</body>
+
+</html>
